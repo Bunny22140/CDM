@@ -1,0 +1,68 @@
+create 3 buckets 
+default settings 
+pipeline raw 
+pipeline processed 
+pipeline scripts 
+ 
+in raw bucket 
+upload csv excel file 
+id name department marks (add values) 
+ 
+add database in aws glue (pipeline_db) 
+ 
+create crawler 
+name 
+data source raw bucket 
+create new iam role 
+choose pipeline_db 
+run it 
+ 
+in aws athena query setting 
+choose pipeline scripts 
+run table 
+ 
+in visual etl jobs create pipeline 
+aws glue data catalog → Transform → S3 Target 
+give job name my-etl-pipeline-1065 
+choose pipeline and table 
+ 
+add node 
+ 
+transform ( change schema) 
+ 
+add node 
+target s3 processed bucket ( add partition keys) 
+ 
+create iam role for job details 
+choose existing policy (admin access or AmazonS3FullAccess 
+AWSGlueServiceRole , awsglueconsolefull access 
+CloudWatchFullAccess) 
+ 
+save then run 
+ 
+in cloudwatch 
+/aws-glue/jobs/output 
+in metrics check them 
+glue.driver.aggregate.numFailedTasks 
+glue.driver.aggregate.recordsRead 
+glue.driver.jvm.heap.usage 
+ 
+create dashboard with line graph 
+choose the above metrics add widget 
+ 
+Reuse query results in aws athena already enabled 
+ 
+s3 proccessed bucket create lifecycle policy  
+name ( archive old data) 
+apply to all objects 
+ 
+Transition current versions of objects between storage classes 
+standard ia 30 days 
+glacier instant 90 days 
+ 
+Expire current versions of objects 
+365 days 
+ 
+choose them 
+ 
+save
