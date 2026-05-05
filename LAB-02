@@ -1,0 +1,30 @@
+create iam with user and password 
+use that account 
+ 
+create bucket 
+unique name , default settings and same region 
+ 
+create folder 
+raw 
+processed 
+archive 
+ 
+create csv excel file 
+students.csv 
+id , name , department and marks ( atleast 3 to 4 values) 
+then upload in raw folder 
+ 
+create glue database and Crawler 
+create database 
+ 
+create crawler 
+choose raw folder/s3 
+set iam 
+choose target database 
+run crawlers 
+ 
+go to tables 
+view table 
+ 
+in aws athena query editor settings 
+choose s3 processed(bucket) run table
