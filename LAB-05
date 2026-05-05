@@ -1,0 +1,10 @@
+versioning-bucket-1065 
+create s3 default settings 
+versioning enable 
+ 
+upload file then  
+delete it 
+ 
+show version 
+recover file using delete marker 
+click on delete marker delete it file is recovered
