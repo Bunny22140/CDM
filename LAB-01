@@ -1,0 +1,24 @@
+Designing cloud based data storage using object storage service S3.
+
+login to aws console
+click s3
+
+first bucket
+name
+region
+default settings versioning on
+upload test file
+
+upload same file
+with diferent content
+url doesnt work
+download file or keep it in folder
+
+create second bucket
+default settings
+acl enabled
+block all public access disabled
+
+upload file
+grant public access
+check url
