@@ -1,0 +1,35 @@
+create key in aws kms 
+symmetric 
+name it 
+finish 
+ 
+create s3 bucket  
+default setting  
+for sse key 
+choose your key 
+ 
+go to permissions 
+edit bucket policy 
+ 
+{ 
+    "Version": "2012-10-17", 
+    "Statement": [ 
+        { 
+            "Sid": "DenyInsecureTransport", 
+            "Effect": "Deny", 
+            "Principal": "*", 
+            "Action": "s3:*", 
+            "Resource": [ 
+                "arn:aws:s3:::andrew-1065080", 
+                "arn:aws:s3:::andrew-1065080/*" 
+            ], 
+            "Condition": { 
+                "Bool": { 
+                    "aws:SecureTransport": "false" 
+                } 
+            } 
+        } 
+    ] 
+} 
+ 
+upload test file
