@@ -1,0 +1,22 @@
+create source bucket 
+default settings versioning enabled 
+ap south mumbai 
+ 
+create destination bucket  
+default settings versioning enabled 
+ap southeast singapore 
+ 
+in source bucket 
+in management create replication rule with name 
+enabled 
+apply to all objects 
+choose destination bucket 
+ 
+create new iam rule 
+save replica rule 
+do not replicate existing objects 
+ 
+upload file to test it 
+in source 
+ 
+check destination
