@@ -1,0 +1,18 @@
+create key in aws kms 
+symmetric 
+name it 
+finish 
+ 
+create rds 
+mysql 
+full config 
+free tier 
+name 
+admin  
+Password 
+pub access no 
+ 
+choose you kms key 
+backup 7 days 
+ 
+rds available
