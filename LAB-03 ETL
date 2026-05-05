@@ -1,0 +1,66 @@
+login to aws 
+source-1065 
+destination-1065 
+ 
+create two s3 with default settings 
+ 
+create lambda role in iam 
+s3 full access 
+and CloudWatchFull Access 
+ 
+create lambda function 
+name and role(Custom EXECUtion role) 
+python 3.13 
+ 
+deploy code 
+ 
+import boto3 
+import urllib.parse 
+from datetime import datetime, timedelta 
+ 
+s3 = boto3.client('s3') 
+ 
+def lambda_handler(event, context): 
+ 
+    # Get exact key 
+    key = event['Records'][0]['s3']['object']['key'] 
+    key = urllib.parse.unquote_plus(key) 
+ 
+    print("ACTUAL KEY:", key) 
+ 
+    # 🔥 IST timestamp 
+    timestamp = (datetime.utcnow() + timedelta(hours=5, minutes=30)) \ 
+        .strftime("%d-%b-%Y_%H-%M-%S") 
+ 
+    # Extract filename only 
+    filename = key.split("/")[-1] 
+ 
+    # Handle files with or without extension 
+    if "." in filename: 
+        name, ext = filename.rsplit(".", 1) 
+        new_filename = f"{name}-{timestamp}.{ext}" 
+    else: 
+        new_filename = f"{filename}-{timestamp}" 
+ 
+    print("NEW FILE:", new_filename) 
+ 
+    try: 
+        s3.copy_object( 
+            CopySource={ 
+                'Bucket': 'source-1065', 
+                'Key': key 
+            }, 
+            Bucket='destination-1065', 
+            Key=new_filename 
+        ) 
+ 
+        print("COPY SUCCESS") 
+ 
+    except Exception as e: 
+        print("ERROR:", e) 
+        raise e 
+ 
+add trigger s3 source 
+all objects 
+ 
+test file on source
